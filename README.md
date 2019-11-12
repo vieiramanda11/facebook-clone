@@ -32,12 +32,12 @@ Build Facebook using Ruby on Rails! Not all Facebook features are available
         - Friendship requests and acceptance.
 
 ## Entity Relationship Diagram (ERD)
-![alt text](docs/ERD-Facebook.jpeg)
+![alt text](docs/ERD - Facebook.jpeg)
 
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com), <b>Ruby '~>2.6.3' </b>, <b>Rails'~> 5.2.3' </b> and for Datebase used <b> PostgreSql</b>. Included <b> rspec </b> testing From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com), <b>Ruby '2.6.3' </b>, <b>Rails'~> 5.2.3' </b> and for Datebase used <b> PostgreSql</b>. Included <b> rspec </b> testing From your command line:
 
 ```bash
 # Clone this repository
