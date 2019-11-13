@@ -1,3 +1,6 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
   outline: none;
@@ -39,69 +42,7 @@ h1 {
   font-size: 28px;
 }
 
-input[type="text"],
-input[type="password"] {
-  display: block;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  padding: 4px;
-  width: 220px;
-  height: 32px;
-  border: none;
-  border-bottom: 1px solid #AAA;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  transition: 0.2s ease;
-}
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 3px solid #360dca;
-  color: #16a085;
-  transition: 0.2s ease;
-}
-
-input[type="submit"] {
-  margin-top: 28px;
-  width: 120px;
-  height: 32px;
-  background: #16a085;
-  border: none;
-  border-radius: 2px;
-  color: #FFF;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: 0.1s ease;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  opacity: 0.8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
-
-input[type="submit"]:active {
-  opacity: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
-
-.or {
-  position: absolute;
-  top: 180px;
-  left: 280px;
-  width: 40px;
-  height: 40px;
-  background: #DDD;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  line-height: 40px;
-  text-align: center;
-}
 
 .right {
   position: absolute;
@@ -165,4 +106,43 @@ button.social-signin.facebook {
     color: red;
     margin: 0 0 30px 0;
     }
+    }
+
+    .navigation {
+      background-color: #3b5998;
+      height: 82px;
+    
+      h2 {
+        font-family: helvetica;
+        color: white;
+      }
+    }
+    
+    .navigation-left {
+      margin-left: 100px;
+    }
+    
+    .navigation-right {
+      margin-right: 100px;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .input {
+      padding: 10px;
+      margin-left: 4px;
+      height: 24px;
+      width: 150px;
+    }
+    
+    .button {
+      background-color: #4267b2;
+      margin-left: 4px;
+      margin-top: 20px;
+      color: white;
+      font-size: 12px;
+      height: 24px;
+      width: 75px;
+      font-weight: bold;
+      border: solid 1px #1c1e21;
     }

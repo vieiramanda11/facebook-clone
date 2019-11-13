@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default ">
+  <div class="container-fluid navigation">
+    <div class="navbar-left navigation-left">
+      <h2>FACEBOOK</h2>
+    </div>
+    <div class="navbar-right">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="navigation-right">
+        <div class="field">
+          <%= f.label :email, class: "label" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+        </div>
+
+        <div class="field input-field">
+          <%= f.label :password, class: "label" %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Log in", class: "button" %>
+        </div>
+    <% end %>
+    </div>
+    </div>
+  </div>
+</div>
