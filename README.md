@@ -13,26 +13,30 @@ Build Facebook using Ruby on Rails! Not all Facebook features are available
 
 ## Features
 
-    + User
-        - Sign up / login / logout / reset password
-        - Profile Page
-        - CRUD functions for posts (C- create, R-read, U-update, D-delete)
-        - <b> has many Posts </b> 
-    + Posts
-        - CRUD
-        - Post display with the post content, author, comments and likes
-        - <b> belongs to a User
-    + Comments
-        - CRUD functions(association with Post)
-    + Likes
-        - Like(:+1:) / Dislike(:-1:) post
-    + Recieve Notifications
-        - Comments on your posts.
-        - Likes for your comments / posts.
-        - Friendship requests and acceptance.
+# User
+* Sign up / login / logout / reset password
+* Profile Page
+* CRUD functions for posts (C- create, R-read, U-update, D-delete)
+* <b> has many Posts </b> 
+
+## Posts
+* CRUD
+* Post display with the post content, author, comments and likes
+* <b> belongs to a User </b>
+
+## Comments
+* CRUD functions(association with Post)
+
+## Likes
+* Like/ Dislike post
+
+## Recieve Notifications
+* Comments on your posts.
+* Likes for your comments / posts.
+* Friendship requests and acceptance.
 
 ## Entity Relationship Diagram (ERD)
-![alt text](docs/ERD - Facebook.jpeg)
+![alt text](docs/erd.jpeg)
 
 
 ## How To Use
