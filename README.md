@@ -26,7 +26,8 @@ Build Facebook using Ruby on Rails! Not all Facebook features are available
 
 ## Comments
 * CRUD functions(association with Post)
-# Likes
+
+## Likes
 * Like/ Dislike post
 
 ## Recieve Notifications
