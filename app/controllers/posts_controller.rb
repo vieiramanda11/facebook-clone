@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   before_action :user_signed_in?, only: [:create,:destroy]
+
   def new
     @post = Post.new
+  end
+
+  def edit
+    @post = Post.find(params[:id])
   end
 
   def create
@@ -16,7 +21,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:success] = "Post deleted"
+    redirect_to root_path
   end
 
   private

@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-body">
+               <% @posts.each do |p| %>
+                <section class="post-body">
+                  <p><%= p.content %></p>
+                </section>
+
+               <section class="post-footer">
+                   <hr>
+                   <div class="post-footer-option container">
+                        <ul class="list-unstyled">
+                            <li><a href="#"><i class="glyphicon glyphicon-thumbs-up"></i> Like</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Comment</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
+                        </ul>
+                   </div>
+                   <div class="post-footer-comment-wrapper">
+                       <div class="comment">
+                            <div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="32" height="32" alt="...">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <div class="anchor-name">
+                                  <h4 class="media-heading"><%= p.user.first_name %><h4>
+                                </div> 
+                                <div class="anchor-time">
+                                  <%= p.updated_at.strftime("%b %d, %Y") %>
+                                </div>
+                                 <%= link_to  "Edit", edit_post_path(p) %>
+                                <%= link_to  "Delete", p, method: :delete %>
+                              </div>
+                            </div>
+                       </div>
+                   </div>
+               </section>
+               <% end %>
+            </div>
+        </div>   
