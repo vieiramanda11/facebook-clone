@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  before_action :user_signed_in?, only: [:create,:destroy]
   def new
     @post = Post.new
   end
@@ -11,13 +11,18 @@ class PostsController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = "Your post was not created!"
+      redirect_to root_path
     end
   end
 
-  private
+  def destroy
 
+  end
+
+  private
+  
     def post_params
-      params.permit(:post).require(:content)
+      params.require(:post).permit(:content)
     end
 
 end
