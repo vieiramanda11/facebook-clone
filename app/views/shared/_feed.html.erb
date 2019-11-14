@@ -29,10 +29,12 @@
                                   <h4 class="media-heading"><%= p.user.first_name %><h4>
                                 </div> 
                                 <div class="anchor-time">
-                                  <%= p.updated_at.strftime("%b %d, %Y") %>
+                                  <%= time_ago_in_words(p.created_at) %> ago
                                 </div>
-                                 <%= link_to  "Edit", edit_post_path(p) %>
-                                <%= link_to  "Delete", p, method: :delete %>
+                                <%if current_user?(p.user)%>
+                                  <%= link_to  "Edit", edit_post_path(p) %>
+                                  <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
+                                <%end%>
                               </div>
                             </div>
                        </div>
