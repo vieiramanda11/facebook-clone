@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!,  only: [:edit, :update]
+    before_action :authenticate_user!,  only: [:edit, :update, :index]
     before_action :check_authorization, only: [:edit, :update]
-    before_action :set_user
+    before_action :set_user, except: [:index]
+
+    def index
+        @users = User.all
+    end
+
     def show
         @user = User.find(params[:id])
     end

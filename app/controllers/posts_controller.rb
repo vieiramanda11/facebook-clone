@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :user_signed_in?, only: [:create,:destroy, :edit, :update]
   before_action :correct_user, only: [:edit, :destroy, :update]
+  
   def new
     @post = Post.new
   end
