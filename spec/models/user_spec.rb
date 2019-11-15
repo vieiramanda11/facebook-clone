@@ -1,26 +1,38 @@
 require 'rails_helper'
-require 'factory_bot_rails'
-
-user = create(:user)
 
 RSpec.describe User, type: :model do
   
-  it 'should be valid' do
-    expect(user).to be_valid
+  before(:all) do
+    @user1 = build(:user)
+  end
+  
+  it "is valid with valid attributes" do
+    expect(@user1).to be_valid
   end
 
-  # it 'name should be present' do
-  #   user = user.name(Nil)
-  #   expect(user).to_not be_valid
-  # end
+  it 'has a unique email' do
+    user2 = build(:user, email:"userr@user.com")
+    expect(user2).to be_valid
+  end
+
+  it 'not valid email' do
+    user2 = build(:user, email:"joeee@gmail.com")
+    expect(user2).to_not be_valid
+  end
+  
+
+  it 'name should be present' do
+    user = build(:user, first_name:nil)
+    expect(user).to_not be_valid
+  end
 
   it 'name should not be too short' do
-    user.first_name = 'a'
+    user = build(:user, first_name: "a")
     expect(user).to_not be_valid
   end
 
   it 'name shoult not be too long' do
-    user.last_name = 'a' * 30
+    user = build(:user, first_name: "a"*30)
     expect(user).to_not be_valid
   end
 end

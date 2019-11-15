@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:user) { User.new(first_name: "Amanda", last_name: "Vieira", email: "email@email.com", password: "password") }
-  before { user.save }
-  subject { user.Post.build(content: "Post text here") }
+  before(:all) do
+    @user1 = build(:user)
+  end
+   
+  subject { @user1.posts.build(content: "Post text here") }
   before { subject.save }
 
   it "should be valid" do
