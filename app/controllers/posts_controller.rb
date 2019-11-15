@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :user_signed_in?, only: [:create,:destroy]
-  before_action :correct_user, only: [:edit, :destroy]
+  before_action :user_signed_in?, only: [:create,:destroy, :edit, :update]
+  before_action :correct_user, only: [:edit, :destroy, :update]
   def new
     @post = Post.new
   end
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find_by(params[:id])
+    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:success] = "Post is edited"
       redirect_to root_path

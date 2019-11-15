@@ -1,10 +1,16 @@
 
 <div class="row">
     <aside class="col-md-4">
+       <h1> Profile Page </h1>
         <section class="user_info">
             <h1>
                 <%= current_user.first_name %>
+                <%= current_user.last_name%>
             </h1>
+
+            <%= avatar_for(@user)%>
         </section>
+
+        <%= link_to "Edit", edit_user_path(@user)%>
     </aside>
 </div>

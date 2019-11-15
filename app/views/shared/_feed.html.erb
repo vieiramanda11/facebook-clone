@@ -3,8 +3,9 @@
   <p><%= p.content %></p>
   <%= time_ago_in_words(p.created_at) %> ago
   <%if current_user?(p.user)%>
-  <%= link_to  "Edit", edit_post_path(p) %>
-  <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
+    <%= link_to  "Edit", edit_post_path(p) %>
+    <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
+    <br> <br>
   <%end%>
 <%end%>
 

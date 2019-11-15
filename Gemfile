@@ -22,6 +22,8 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'jbuilder', '~> 2.7'
 gem 'omniauth-facebook'
 gem 'bootstrap-sass', '3.3.6'
+gem 'carrierwave', '~> 0.11.2'
+gem 'mini_magick',    '4.5.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

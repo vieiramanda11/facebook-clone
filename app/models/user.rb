@@ -8,4 +8,6 @@ class User < ApplicationRecord
          :confirmable
   has_many :posts
 
+  mount_uploader :profile_pic, AvatarUploader
+
 end
