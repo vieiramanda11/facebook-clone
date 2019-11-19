@@ -15,6 +15,6 @@ RSpec.feature 'UserSignups', type: :feature do
       fill_in 'Password confirmation', with: user1.password, match: :prefer_exact
 
       click_button 'Sign up'
-    end.to change { User.count }
+    end.to change { User.count }.by(1)
   end
 end

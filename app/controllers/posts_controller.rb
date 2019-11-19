@@ -26,11 +26,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = 'Post created!'
-      redirect_to root_path
     else
       flash[:danger] = 'Your post was not created!'
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   def destroy
