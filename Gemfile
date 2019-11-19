@@ -18,12 +18,12 @@ gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'devise', '~> 4.7', '>= 4.7.1'
-gem 'jbuilder', '~> 2.7'
-gem 'omniauth-facebook'
 gem 'bootstrap-sass', '3.3.6'
 gem 'carrierwave', '~> 0.11.2'
-gem 'mini_magick',    '4.5.1'
+gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'jbuilder', '~> 2.7'
+gem 'mini_magick', '4.5.1'
+gem 'omniauth-facebook'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -38,10 +38,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'capybara'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'capybara'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
 end
 
 group :development do
