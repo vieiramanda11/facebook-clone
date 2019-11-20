@@ -5,12 +5,6 @@
             <ul class="list-inline" id='list_PostActions'>
                 <li class='active'><a href='#'>Update status</a></li>
             </ul>
-            <%= form_for (Post.new) do |f| %>
-              <%= f.text_area :content, class: "form-control", placeholder: "What's in your mind?" %>
-            <ul class='list-inline post-actions'>
-                <li class="pull-right"><%= f.submit "Post", class: "btn btn-primary btn-xs" %></li>
-            </ul>
-            <% end %>
         </div>
     </div>
 </div>  

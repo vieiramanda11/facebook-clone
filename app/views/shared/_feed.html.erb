@@ -9,6 +9,19 @@
     <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
     <br> <br>
   <%end%>
+
+  <% @comments.each do |comment| %>
+    <p>Author:<%= comment.user.first_name%>
+    <p>Content:<%= comment.comment %></p>
+    <%= time_ago_in_words(comment.created_at) %> ago
+    <br> 
+  <% end %>
+
+  <%= form_for (Comment.new) do |f| %>
+    <%= f.text_area :comment, class: "form-control" %>
+    <ul class='list-inline post-actions'>
+      <li class="pull-right"><%= f.submit "Comment", class: "btn btn-primary btn-xs" %></li>
+    </ul>
+  <% end %> 
   <hr>
 <%end%>
-
