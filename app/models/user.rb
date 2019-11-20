@@ -10,6 +10,17 @@ class User < ApplicationRecord
          :confirmable
   has_many :posts
   has_many :comments
+  has_many :likes
 
   mount_uploader :profile_pic, AvatarUploader
+
+
+
+  def like
+    likes.create(post_id: post.id)
+  end
+
+  def unlike
+    likes.find_by(post_id: post.id).destroy
+  end
 end

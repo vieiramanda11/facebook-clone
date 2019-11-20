@@ -8,9 +8,13 @@
   <%if current_user?(p.user)%>
     <%= link_to  "Edit", edit_post_path(p) %>
     <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
+
     <br> <br>
   <%end%>
-  
+    <%= link_to "Like" , likes_path(post_id: p.id.to_i), method: :post, class:"btn btn-default"  do %>
+      <i class="glyphicon glyphicon-thumbs-up"></i> 
+    <%end%>
+  <br> <br> <br>
   <div class = "post-comment">
     <%p.comments.each do |comment|%>
       <p>Name:<%= comment.user.first_name%>
