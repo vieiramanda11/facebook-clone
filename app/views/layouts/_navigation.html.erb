@@ -1,0 +1,46 @@
+
+<nav class="navbar navbar-default ">
+  <div class="container-fluid navigation">
+    <div class="navbar-left navigation-left">
+      <h2><%= link_to 'FACEBOOK', root_path %></h2>
+    </div>
+    <%if user_signed_in?%>
+      <ul class="nav navbar-nav navbar-right header">
+       <li><%= link_to "All Users", users_path  %></li>
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Settings",  edit_user_registration_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+    <%else%>
+      <div class="navbar-right">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="navigation-right">
+          <div class="field">
+            <%= f.label :email, class: "label" %><br />
+            <%= f.email_field :email , placeholder:"Mail",  autofocus: true, autocomplete: "email", class: "input" %>
+          </div>
+
+          <div class="field input-field">
+            <%= f.label :password, class: "label" %><br />
+            <%= f.password_field :password, placeholder:"Passwordd", autocomplete: "current-password", class: "input" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Log in", class: "button" %>
+          </div>
+      <% end %>
+    <%end%>
+     </div>
+    </div>
+  </div>
+</nav>
