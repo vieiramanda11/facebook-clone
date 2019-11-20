@@ -1,6 +1,6 @@
 
 <div class="row">
-    <aside class="col-md-4">
+    <aside class="col-md-8">
        <h1> Profile Page </h1>
         <section class="user_info">
             <h1>
@@ -12,14 +12,20 @@
         </section>
 
         <%= link_to "Edit", edit_user_path(@user)%>
-    </aside>
+        <br>
+        <hr>
+    
     <% @user.posts.each do |post| %>
+
+    <p>Author:<%= post.user.first_name%>
       <p><%= post.content %></p>
       <%= time_ago_in_words(post.created_at) %> ago
       <%if current_user?(post.user)%>
+      <br>
         <%= link_to  "Edit", edit_post_path(post) %>
         <%= link_to  "Delete", post, method: :delete, data: { confirm: "You sure?" } %>
-        <br> <br>
+        <br> <br> <hr>
       <% end %>
     <% end %>
+    </aside>
 </div>
