@@ -1,10 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:destroy, :create]
-
+  
   def index
-  @comments = Comment.all.where("post_id = ?",
-    Post.find_by_id(params[:id]))
+    @comments = Comment.all
   end
 
   def new
@@ -22,15 +20,18 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    
   end
 
   private
 
-    def set_comment
-      @comment = current_user.comments.find_by(id: params[:id])
-    end
 
     def comment_params
       params.require(:comment).permit(:comment, :post_id)
     end
+
+    # def correct_user
+    #   @comment = post.comments.find_by(id: params[:id])
+    #   redirect_to root_path if @comment.nil?
+    # end
 end
