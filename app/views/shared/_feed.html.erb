@@ -16,7 +16,10 @@
       <p>Name:<%= comment.user.first_name%>
       <p>Comment:<%= comment.comment %></p>
       <%= time_ago_in_words(comment.created_at) %> ago
-
+      <%if current_user?(comment.user)%>
+        <%= link_to  "Edit", edit_comment_path(comment) %>
+        <br> <br>
+      <%end%>
     <%end%>
   </div>
 

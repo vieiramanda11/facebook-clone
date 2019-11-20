@@ -9,6 +9,20 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      flash[:success] = 'Comment is edited'
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
+
   def create
     @comment = current_user.comments.build(comment_params)
     if @comment.save
