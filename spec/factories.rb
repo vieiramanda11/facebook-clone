@@ -14,3 +14,4 @@ FactoryBot.define do
     after(:create, &:confirm!)
   end
 end
+
