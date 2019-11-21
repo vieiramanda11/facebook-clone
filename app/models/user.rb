@@ -14,8 +14,6 @@ class User < ApplicationRecord
 
   mount_uploader :profile_pic, AvatarUploader
 
-
-
   def like
     likes.create(post_id: post.id)
   end

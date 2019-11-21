@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @comments = Comment.all
   end
@@ -26,9 +28,9 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
     if @comment.save
-      flash[:success] = "Comment created!"
+      flash[:success] = 'Comment created!'
     else
-      flash[:danger] = "Comment not created!"
+      flash[:danger] = 'Comment not created!'
     end
     redirect_to root_url
   end
@@ -38,13 +40,11 @@ class CommentsController < ApplicationController
     @comment.destroy
     flash[:success] = 'Comment deleted'
     redirect_to root_path
-
   end
 
   private
 
-
-    def comment_params
-      params.require(:comment).permit(:comment, :post_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:comment, :post_id)
+  end
 end

@@ -16,13 +16,13 @@ RSpec.feature 'UserLogouts', type: :feature do
 
   before :each do
     visit root_path
-    fill_in :placeholder => "What's in your mind?", :with => "Something"
-    click_button "Post"
+    fill_in placeholder: "What's in your mind?", with: 'Something'
+    click_button 'Post'
   end
 
   scenario 'like post' do
     visit root_path
-    find(:css, '.btn.btn-default').click 
+    find(:css, '.btn.btn-default').click
     expect(page).to have_content('1 Like')
   end
 end
