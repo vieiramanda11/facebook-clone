@@ -8,12 +8,15 @@
   <%if current_user?(p.user)%>
     <%= link_to  "Edit", edit_post_path(p) %>
     <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
-
     <br> <br>
   <%end%>
-    <%= link_to "Like" , likes_path(post_id: p.id.to_i), method: :post, class:"btn btn-default"  do %>
-      <i class="glyphicon glyphicon-thumbs-up"></i> 
-    <%end%>
+    <% pre_like = p.likes.find { |like| like.user_id == current_user.id} %>
+    <% if pre_like %>
+      <i class="fa fa-thumbs-down"><%= button_to 'Unlike', post_like_path(p, pre_like), method: :delete, class:"btn btn-default",  %></i>
+    <% else %>
+      <i class="fa fa-thumbs-up"><%= button_to 'Like', post_likes_path(p), method: :post, class:"btn btn-default" %></i>
+    <% end %>
+      <p><%= p.likes.count %> <%= (p.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
   <br> <br> <br>
   <div class = "post-comment">
     <%p.comments.each do |comment|%>
