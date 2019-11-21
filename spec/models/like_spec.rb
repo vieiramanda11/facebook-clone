@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  @user = User.create(first_name: 'name', last_name: 'surename', email: 'test@email.com', password: 'password', password_confirmation: 'password')
+  @user = User.create(first_name: 'name', last_name: 'surename', 
+  email: 'test@email.com', password: 'password', password_confirmation: 'password')
   @post = @user.posts.new(content: 'Content text')
 
   it 'liked' do
