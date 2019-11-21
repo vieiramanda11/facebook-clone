@@ -4,7 +4,9 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   before :each do
-    @user = User.create(first_name: 'name', last_name: 'surename', email: 'test@email.com', password: 'password', password_confirmation: 'password')
+    @user = User.create(first_name: 'name', last_name: 'surename', 
+    email: 'test@email.com', password: 'password',
+    password_confirmation: 'password')
     @post = @user.posts.new(content: 'Content text')
     @comment = Comment.new(comment: 'Comment text', user: @user, post: @post)
   end
