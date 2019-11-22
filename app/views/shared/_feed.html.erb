@@ -1,4 +1,5 @@
 
+<div>
 <% @posts.each do |p| %>
   <p>Author:<%= p.user.first_name%>
   <p>Content:<%= p.content %></p>
@@ -9,6 +10,42 @@
     <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
     <br> <br>
   <%end%>
+    <% pre_like = p.likes.find { |like| like.user_id == current_user.id} %>
+    <% if pre_like %>
+     <%= button_to  post_like_path(p, pre_like), method: :delete, class:"btn btn-default" do %>
+      <i class="fa fa-thumbs-down"> </i>
+    <%end%>
+    <% else %>
+     <%= button_to  post_likes_path(p), method: :post, class:"btn btn-default" do%>
+     <i class="fa fa-thumbs-up"> </i>
+     <%end%>
+    <% end %>
+      <p><%= p.likes.count %> <%= (p.likes.count) == 1 ? 'Like' : 'Likes'%></p> 
+  <br> <br> <br>
+  <div class = "post-comment">
+    <%p.comments.each do |comment|%>
+      <p>Name:<%= comment.user.first_name%>
+      <p>Comment:<%= comment.comment %></p>
+      <%= time_ago_in_words(comment.created_at) %> ago
+      <%if current_user?(comment.user) %>
+        <%= link_to  "Delete", comment, method: :delete, data: { confirm: "You sure?" } %>
+        <%= link_to "Edit", edit_comment_path(comment)%>
+      <%elsif current_user.id != comment.user && current_user.id == p.user_id %>
+        <%= link_to  "Delete", comment, method: :delete, data: { confirm: "You sure?" } %>
+        <br> <br>
+      <%end%>
+    <%end%>
+  </div>
+
+  <%= form_for Comment.new do |f| %>
+    <%= f.text_area :comment, class: "form-control" %>
+    <ul class='list-inline post-actions'>
+      <li class="pull-right"><%= f.submit "Comment", class: "btn btn-primary btn-xs" %></li>
+    </ul>
+     <%= f.hidden_field :post_id, :value => p.id %>
+  <% end  %>
   <hr>
+  <br> <br >   <br> <br >   <br> <br >
 <%end%>
 
+</div>

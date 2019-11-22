@@ -9,6 +9,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
   has_many :posts
+  has_many :comments
+  has_many :likes
 
   mount_uploader :profile_pic, AvatarUploader
 end
