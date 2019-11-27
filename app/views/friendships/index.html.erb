@@ -1,0 +1,7 @@
+<% @friends.each do |user| %>
+    <li><%= link_to "Check profile", user_path(user) %></li>
+    <%= user.first_name %>
+    <%= user.last_name %><br>
+    <%= user.profile_pic %>
+    <br>
+<% end %>
