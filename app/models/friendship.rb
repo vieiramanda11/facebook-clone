@@ -7,7 +7,6 @@ class Friendship < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
 
-
   private
   def not_friends
     errors.add(:friend, 'is already added') if user.friends.include?(friend)

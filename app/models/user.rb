@@ -13,11 +13,9 @@ class User < ApplicationRecord
   has_many :likes
   has_many :friendships
 
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
-
-  has_many :friends, -> { Friendship.where(confirmed: "true")},  through: :friendships, :foreign_key => "user_id",  source: :friend
-  has_many :requests, -> {Friendship.where(confirmed: "false")}, through: :friendships, :foreign_key => "user_id", source: :friend
-
+  has_many :inverse_friendships, -> { where(confirmed: true) }, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :requests, -> {where(confirmed: false)}, class_name: "Friendship", :foreign_key => "friend_id", source: :friend
+  has_many :pending_friendships, -> { where(confirmed: false) }, class_name: 'Friendship', :foreign_key => "user_id", dependent: :destroy
   mount_uploader :profile_pic, AvatarUploader
 
   
@@ -46,17 +44,30 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  def requested?(user)
+  # def remove_process(friend)
+    
+  # end
+
+  def pendings?(user)
     requests.include?(user)
+  end
+
+  def requested?(user)
+    pending_friends.include?(user)
   end
 
 
   def request(friend)
-    friendship = Friendship.create(user_id: self, friend_id: friend)
+    Friendship.create(user_id: id, friend_id: friend.id)
   end
+
   def accept(friend)
     friendship = Friendship.create(user_id: current_user.id, friend_id: friend, confirmed: "true")
     current_user.friendships.build.friendship
+  end
+
+  def destroy_process(friend)
+    current_user.friendships.find_by(friend_id: friend.id)
   end
 
 

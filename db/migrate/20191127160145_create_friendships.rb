@@ -1,6 +1,6 @@
 class CreateFriendships < ActiveRecord::Migration[6.0]
   def change
-    drop_table :friendships
+    # drop_table :friendships
     create_table :friendships do |t|
       t.references :user, index: true, foreign_key: true
       t.references :friend, index: true

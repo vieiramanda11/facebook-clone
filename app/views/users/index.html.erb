@@ -5,10 +5,18 @@
     <%= user.last_name %><br>
     <%= user.profile_pic %>
     <br>
-    <%if friends.include?(user)%>
+    <%if current_user.friend?(user)%>
       <p> Drop </p>
+    <%elsif current_user.pendings?(user)%>
+         <%= button_to  user_unfriend_path(user), method: :delete , class:"btn btn-danger" do %>
+              <i class="pull-right fa fa-times"> Cancel Request</i>
+            <%end%>
+     <% elsif current_user.requests.include?(user) %>
+          <p> Accept Reject </p>
+    <%elsif current_user.friend?(user)%>
+      <p> Friend </p>
     <%else%>
-      <%= button_to  user_friendships_path(user), method: :post, class:"btn btn-default" do %>
+      <%= button_to  user_friendships_path(user), class:"btn btn-default" do %>
         <i class="pull-right fas fa-user-plus">Add friend</i>
       <%end%>
     <%end%>
