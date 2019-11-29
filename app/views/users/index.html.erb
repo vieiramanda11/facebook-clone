@@ -23,7 +23,7 @@
           <%= button_to 'Accept', user_receive_path(user), class: 'pull-right btn btn-primary mr-2'%>
           <%= button_to 'Reject', user_unfriend_path(user), method: :delete, class: 'pull-right btn btn-danger'%>
     <%else%>
-      <%= button_to  user_friendships_path(user), class:" pull-right  btn btn-default" do %>
+      <%= button_to  user_friendships_path(user), class:" pull-right btn btn-default" do %>
         <i class="fas fa-user-plus">Add friend</i>
       <%end%>
     <%end%>
