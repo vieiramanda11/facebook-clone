@@ -12,7 +12,10 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :friendships
+  has_many :friends, through: :friendships
   has_many :inverse_friendships, -> { where(confirmed: true) }, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
   has_many :requests, -> {where(confirmed: false)}, class_name: "Friendship", :foreign_key => "friend_id", source: :friend
   has_many :pending_friendships, -> { where(confirmed: false) }, class_name: 'Friendship', :foreign_key => "user_id", dependent: :destroy
   mount_uploader :profile_pic, AvatarUploader
@@ -23,6 +26,10 @@ class User < ApplicationRecord
     friendships.map{|friendship| friendship.friend if !friendship.confirmed}.compact
   end
 
+
+  def friends 
+    inverse_friends.joins(:friendships).where("friendships.user_id = users.id and friendships.friend_id = :self_id", :self_id => id).all
+  end
 
   def friend_requests  # for friend
     requests.map{|friendship| friendship.user if !friendship.confirmed}.compact
@@ -36,10 +43,5 @@ class User < ApplicationRecord
   def request(friend)
     Friendship.create(user_id: id, friend_id: friend.id)
   end
-
-  def destroy_process(friend)
-    current_user.friendships.find_by(friend_id: friend.id)
-  end
-
 
 end

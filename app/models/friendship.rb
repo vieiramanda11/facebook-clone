@@ -1,15 +1,15 @@
 class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, :class_name => "User"
-  # validate :not_friends
-  # validate :not_pending
-  # validate :not_self
+  validate :not_friends
+  validate :not_pending
+  validate :not_self
   default_scope { order(created_at: :desc) }
 
 
   private
   def not_friends
-    errors.add(:friend, 'is already added') if user.friends.include?(friend)
+    errors.add(:friend, 'is already added') if user.friend?(friend)
   end
 
   def not_pending

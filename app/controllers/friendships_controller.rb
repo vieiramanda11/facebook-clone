@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
     before_action :set_friend_request
 
     def index
-        @friends = @user.friends
+        @friends = current_user.friends
     end
 
     def create
@@ -33,9 +33,6 @@ class FriendshipsController < ApplicationController
         redirect_back(fallback_location: root_path)
     end
 
-
-    def show
-    end
     private
 
     def set_friend_request
