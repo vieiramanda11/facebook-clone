@@ -31,6 +31,13 @@ class User < ApplicationRecord
     inverse_friends.joins(:friendships).where("friendships.user_id = users.id and friendships.friend_id = :self_id", :self_id => id).all
   end
 
+
+  def confirm_friend(user)
+    friendship = inverse_friendships.find{|friendship| friendship.user == user}
+    friendship.confirmed = true
+    friendship.save
+  end
+  
   def friend_requests  # for friend
     requests.map{|friendship| friendship.user if !friendship.confirmed}.compact
   end

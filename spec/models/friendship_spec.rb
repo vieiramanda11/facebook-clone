@@ -25,4 +25,22 @@ RSpec.describe Friendship, type: :model do
     expect(friendship).to be_valid
   end
 
+  it 'check if user is not confirmed friend' do
+    friendship = Friendship.new(user_id: user1.id, friend_id: user2.id)
+    value =  user1.friend?(user2)
+    expect(value).to be false
+  end
+
+  it 'check if user is requested friendship' do
+    friendship = Friendship.create(user_id: user1.id, friend_id: user2.id)
+    value = user1.pending_friends.include?(user2)
+    expect(value).to be true
+  end
+
+  it 'check if user is requested friendship' do
+    friendship = Friendship.create(user_id: user1.id, friend_id: user2.id, confirmed: true)
+    value = user2.friends.include?(user1)
+    expect(value).to be true
+  end
+
 end
