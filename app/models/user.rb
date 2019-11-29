@@ -18,7 +18,8 @@ class User < ApplicationRecord
 
   has_many :requests, -> { where(confirmed: false) }, class_name: 'Friendship',
                                                       foreign_key: 'friend_id', source: :friend
-  has_many :pending_friendships, -> { where(confirmed: false) }, class_name: 'Friendship', foreign_key: 'user_id', dependent: :destroy
+  has_many :pending_friendships, -> { where(confirmed: false) }, 
+            class_name: 'Friendship', foreign_key: 'user_id', dependent: :destroy
   mount_uploader :profile_pic, AvatarUploader
 
   def pending_friends
