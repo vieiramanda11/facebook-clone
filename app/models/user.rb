@@ -44,13 +44,20 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
-  # def remove_process(friend)
-    
-  # end
+  def friendship_connection(friend)
+    Friendship.where(user: self, friend: friend) + Friendship.where(user: friend, friend: self)
+  end
+
+  def remove_process(friend)
+     relations(friend).each(&:destroy)
+  end
 
   def pendings?(user)
     requests.include?(user)
   end
+
+
+
 
   def requested?(user)
     pending_friends.include?(user)
@@ -61,10 +68,10 @@ class User < ApplicationRecord
     Friendship.create(user_id: id, friend_id: friend.id)
   end
 
-  def accept(friend)
-    friendship = Friendship.create(user_id: current_user.id, friend_id: friend, confirmed: "true")
-    current_user.friendships.build.friendship
-  end
+  # def accept(friend)
+  #   friendship = Friendship.create(user_id: current_user.id, friend_id: friend, confirmed: "true")
+  #   current_user.friendships.build.friendship
+  # end
 
   def destroy_process(friend)
     current_user.friendships.find_by(friend_id: friend.id)

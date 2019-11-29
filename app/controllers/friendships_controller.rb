@@ -20,15 +20,12 @@ class FriendshipsController < ApplicationController
     end
 
     def destroy
-        if params[:id]
-            user = User.find_by_id(params[:id])
-        else
-            @friend__val = current_user.pending_friendships.find(params[:friendship_id])
-        end
-        @friend__val ||= current_user.friend_requests.find{|friendship| friendship.friend == user}
-        redirect_back(fallback_location: root_path) if @friend__val.delete
-     
+        user = User.find(params[:user_id])
+        @connection = Friendship.where('user_id = ? and friend_id = ?', current_user.id, user.id).first
+        @connection.destroy
+        redirect_back(fallback_location: root_path)
     end
+
 
     def show
     end
