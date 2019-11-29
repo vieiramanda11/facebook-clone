@@ -14,15 +14,22 @@ class FriendshipsController < ApplicationController
     end
 
     def update
-        requested_user = current_user.requested?(user)
-        current_user.accept(requested_user)
+        user = User.find(params[:user_id])
+        @connection = Friendship.where('user_id = ? and friend_id = ?', user.id, current_user.id).first
+        @connection.update_column(:confirmed, true)
+        flash[:success] = 'You are the friends'
         redirect_back(fallback_location: root_path)
     end
 
     def destroy
         user = User.find(params[:user_id])
         @connection = Friendship.where('user_id = ? and friend_id = ?', current_user.id, user.id).first
-        @connection.destroy
+        @connection2 = Friendship.where('user_id = ? and friend_id = ?', user.id, current_user.id).first
+        if @connection
+            @connection.destroy
+        else
+            @connection2.destroy
+        end
         redirect_back(fallback_location: root_path)
     end
 
