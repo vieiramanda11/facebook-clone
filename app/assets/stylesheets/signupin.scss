@@ -16,6 +16,15 @@ body {
   font-weight: 300;
 }
 
+.face-link {
+  color: white;
+}
+
+.face-link:hover {
+  color: white;
+  opacity: 0.8;
+}
+
 
 #login-box {
   position: relative;
@@ -63,7 +72,7 @@ h1 {
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #FFF;
+  color: #000;
   text-align: center;
 }
 
@@ -139,13 +148,13 @@ button.social-signin.facebook {
     .button {
       background-color: #4267b2;
       margin-left: 4px;
-      margin-top: 20px;
+      margin-top: 24px;
       color: white;
       font-size: 12px;
       height: 24px;
       width: 75px;
       font-weight: bold;
-      border: solid 1px #1c1e21;
+      border: solid 0.5px #1c1e21;
     }
 
 
