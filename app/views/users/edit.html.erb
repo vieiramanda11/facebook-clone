@@ -1,11 +1,12 @@
 <h1> Edit Profile </h1>
 
-<%= form_for(@user, html: {multipart: true}) do |f|%>
-    <%=f.label :first_name%>
-    <%= f.text_field :first_name %>
-    <%=f.label :last_name%>
-    <%= f.text_field :last_name %>
+<%= form_for(@user, html: {multipart: true} ) do |f|%>
+    <%=f.label :first_name, class: "form-control-md" %><br>
+    <%= f.text_field :first_name, class: "form-control-md" %><br><br>
+    <%=f.label :last_name, class: "form-control-md"%><br>
+    <%= f.text_field :last_name, class: "form-control-md" %><br><br>
     
-    <%= f.file_field :profile_pic%>
+    <%= f.file_field :profile_pic, class: "form-group" %><br>
     <%= f.submit "Save changes"%>
 <%end%>
+

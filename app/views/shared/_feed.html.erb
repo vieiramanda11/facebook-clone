@@ -1,8 +1,6 @@
-
 <% @posts.each do |p| %>
-<div class="container">
   <div class="row">
-	<div class="col-md-6 margin-left">
+	  <div class="col-md-offset-3 col-md-6 col-xs-12 one">
         <div class="panel panel-default">
             <div class="panel-body">
                <section class="post-heading">
@@ -65,6 +63,14 @@
                                 <div class="anchor-username"><h4 class="media-heading"><%= comment.user.first_name%></h4><div> 
                                 <p class="anchor-time"><%= time_ago_in_words(comment.created_at) %> ago</p>
                               </div>
+                              <div class="anchor-time">
+                              <%if current_user?(comment.user) %>
+                              <%= link_to "Edit", edit_comment_path(comment)%>
+                              <%= link_to  "Delete", comment, method: :delete, data: { confirm: "You sure?" } %>
+                            <%elsif current_user.id != comment.user && current_user.id == p.user_id %>
+                              <%= link_to  "Delete", comment, method: :delete, data: { confirm: "You sure?" } %>
+                            <%end%>
+                            </div> <br>
                               <section class="post-body">
                                 <p><%= comment.comment %></p>
                               </section>
@@ -76,8 +82,6 @@
                </section>
             </div>
         </div>
-      </div>   
-	</div>
-</div>
-
+      </div>  
+    </div>
 <% end  %>

@@ -11,6 +11,10 @@ body{
 
 
 /*-- Content Style --*/
+.center {
+  display: flex;
+  align-items: center;
+}
 
 .list-unstyled {
   margin-left: -15px;
@@ -50,6 +54,4 @@ body{
   height: 40px;
 }
 
-.margin-left {
-  margin-left: 278px;
-}
+

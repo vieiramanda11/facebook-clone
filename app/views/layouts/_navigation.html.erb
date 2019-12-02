@@ -6,11 +6,11 @@
     </div>
     <%if user_signed_in?%>
       <ul class="nav navbar-nav navbar-right header">
-       <li><%= link_to "All Users", users_path  %></li>
+       <li><p class="margin-top"><%= link_to "All Users", users_path, class: "face-link" %></p></li>
          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <p class="face-link margin-top-2 dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
-            </a>
+            </p>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Friends",  user_friendships_path(current_user) %></li>

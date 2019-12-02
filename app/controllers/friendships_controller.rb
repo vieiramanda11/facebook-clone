@@ -19,7 +19,7 @@ class FriendshipsController < ApplicationController
     user = User.find(params[:user_id])
     @connection = Friendship.where('user_id = ? and friend_id = ?', user.id, current_user.id).first
     @connection.update_column(:confirmed, true)
-    flash[:success] = 'You are the friends'
+    flash[:success] = 'You are friends'
     redirect_back(fallback_location: root_path)
   end
 
