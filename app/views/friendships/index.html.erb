@@ -1,0 +1,9 @@
+<% @friends.each do |user| %>
+    <li><%= link_to "Check profile", user_path(user) %></li>
+    <%= user.first_name %>
+    <%= user.last_name %><br>
+    <%= user.profile_pic %>
+     <%= button_to 'Delete Friend', user_unfriend_path(user), method: :delete, class: 'pull-right btn-danger'%>
+    <br>
+    <hr>
+<% end %>

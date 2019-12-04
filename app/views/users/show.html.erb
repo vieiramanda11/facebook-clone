@@ -4,16 +4,45 @@
        <h1> Profile Page </h1>
         <section class="user_info">
             <h1>
-                <%= current_user.first_name %>
-                <%= current_user.last_name%>
+                <%= @user.first_name %>
+                <%= @user.last_name%>
             </h1>
 
             <%= avatar_for(@user)%>
+            
         </section>
-
+        <%if @user.id == current_user.id%>
         <%= link_to "Edit", edit_user_path(@user)%>
         <br>
         <hr>
+        <%else%>
+          <br>
+          <%if current_user.friend?(@user)%>
+            <div class=" dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    You are the friends
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <%= button_to 'Delete Friend', user_unfriend_path(@user), method: :delete, class: ' btn-danger'%>
+                  </div>
+            </div>
+  
+          <%elsif current_user.pending_friends.include?(@user)%>
+              <%= button_to  user_unfriend_path(@user), method: :delete , class:"   btn btn-danger" do %>
+                    <i class="fa fa-times"> Cancel Request</i>
+                  <%end%>
+          <%elsif current_user.friend_requests.include?(@user)%>
+                <%= button_to 'Accept', user_receive_path(@user), class: ' btn btn-primary mr-2'%>
+                <%= button_to 'Reject', user_unfriend_path(@user), method: :delete, class: ' btn btn-danger'%>
+          <%else%>
+            <%= button_to  user_friendships_path(@user), class:"   btn btn-default" do %>
+              <i class="fas fa-user-plus">Add friend</i>
+            <%end%>
+          <%end%>
+
+
+
+        <%end%>
     
     <% @user.posts.each do |post| %>
 
