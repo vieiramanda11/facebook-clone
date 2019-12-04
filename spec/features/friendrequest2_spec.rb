@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Friendrequests', type: :feature do
+RSpec.feature 'Friendrequest2s', type: :feature do
   let(:user1) { FactoryBot.create(:user) }
   before do
     user1.confirm
@@ -26,7 +26,7 @@ RSpec.feature 'Friendrequests', type: :feature do
     click_button 'Log in'
   end
 
-  scenario 'send friend request' do
+  scenario 'accept or reject friend' do
     visit users_path
 
     page.first('.btn.btn-default').click
@@ -37,6 +37,9 @@ RSpec.feature 'Friendrequests', type: :feature do
     fill_in 'Password', with: user2.password, match: :prefer_exact
 
     click_button 'Log in'
-    expect(page).to have_content('Friend Requests 1')
+
+    click_link('Friend Request')
+    click_button 'Accept'
+    expect(page).to have_content('Friend Requests 0')
   end
 end
