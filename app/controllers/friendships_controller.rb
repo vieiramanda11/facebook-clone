@@ -2,7 +2,7 @@
 
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_friend_request
+  before_action :set_friend_request, except: [:friend_requests]
 
   def index
     @friends = current_user.friends
@@ -33,6 +33,11 @@ class FriendshipsController < ApplicationController
       @connection2.destroy
     end
     redirect_back(fallback_location: root_path)
+  end
+
+
+  def friend_requests
+    @requests = current_user.friend_requests
   end
 
   private

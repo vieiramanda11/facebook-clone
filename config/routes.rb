@@ -22,5 +22,7 @@ Rails.application.routes.draw do
     post 'receive', to: 'friendships#update'
   end
 
+  get 'requests', to: 'friendships#friend_requests'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
