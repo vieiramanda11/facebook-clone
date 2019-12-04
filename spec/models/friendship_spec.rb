@@ -46,7 +46,6 @@ RSpec.describe Friendship, type: :model do
     expect(value).to be true
   end
 
-
   it 'check if user is requested friendship' do
     Friendship.create(user_id: user1.id, friend_id: user2.id, confirmed: true)
     value = user2.friends.include?(user1)

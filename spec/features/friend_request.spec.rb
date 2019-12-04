@@ -26,12 +26,11 @@ RSpec.feature 'FriendRequests', type: :feature do
     click_button 'Log in'
   end
 
-  scenario "send friend request" do
+  scenario 'send friend request' do
     visit users_path
-    
+
     page.first('.btn.btn-default').click
     page.find(:xpath, "//a[@href='/users/sign_out']").click
-
 
     visit new_user_session_path
     fill_in 'Email', with: user2.email, match: :prefer_exact
@@ -39,15 +38,13 @@ RSpec.feature 'FriendRequests', type: :feature do
 
     click_button 'Log in'
     expect(page).to have_content('Friend Requests 1')
-
   end
 
-  scenario "accept or reject friend" do
+  scenario 'accept or reject friend' do
     visit users_path
-    
+
     page.first('.btn.btn-default').click
     page.find(:xpath, "//a[@href='/users/sign_out']").click
-
 
     visit new_user_session_path
     fill_in 'Email', with: user2.email, match: :prefer_exact
@@ -59,5 +56,4 @@ RSpec.feature 'FriendRequests', type: :feature do
     click_button 'Accept'
     expect(page).to have_content('Friend Requests 0')
   end
-
 end
