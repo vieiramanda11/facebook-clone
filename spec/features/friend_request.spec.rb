@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'FriendRequests', type: :feature do
+RSpec.feature 'Request', type: :feature do
   let(:user1) { FactoryBot.create(:user) }
   before do
     user1.confirm
