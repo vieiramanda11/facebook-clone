@@ -1,9 +1,9 @@
 <div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-md-offset-3 col-md-6 col-xs-12">
+        <div class="col-md-offset-3 col-md-6 col-xs-12 two">
             <div class="well well-sm well-social-post">
             <ul class="list-inline" id='list_PostActions'>
-                <li class='active'><a href='#'>Update status</a></li>
+                <li class='active'><strong>Update status</strong></li>
             </ul>
             <%= form_for (Post.new) do |f| %>
               <%= f.text_area :content, class: "form-control", placeholder: "What's in your mind?" %>
