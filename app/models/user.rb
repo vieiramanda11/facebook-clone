@@ -14,7 +14,6 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
-  has_many :inverse_friends, through: :inverse_friendships, source: :user
   mount_uploader :profile_pic, AvatarUploader
 
   def pending_friends
@@ -22,11 +21,9 @@ class User < ApplicationRecord
   end
 
   def friends
-    friend_val = inverse_friends.joins(:friendships)
-      .where('friendships.user_id = users.id and friendships.friend_id = :self_id', self_id: id).all
     friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
-    friends_array + inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
-    friend_val + friends_array.compact
+    result = friends_array + inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
+    result.compact
   end
 
   def friend_requests
