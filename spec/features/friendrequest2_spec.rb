@@ -4,18 +4,11 @@ require 'rails_helper'
 
 RSpec.feature 'Friendrequest2s', type: :feature do
   let(:user1) { FactoryBot.create(:user) }
-  before do
-    user1.confirm
-  end
-
-  let(:user2) do
-    User.create(first_name: 'name', last_name: 'surename',
-                email: 'anyemail@gmail.com', password: 'password',
-                password_confirmation: 'password')
-  end
+  let(:user2) { FactoryBot.create(:random_user) }
 
   before do
     user2.confirm
+    user1.confirm
   end
 
   before :each do

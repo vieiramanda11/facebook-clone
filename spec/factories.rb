@@ -7,14 +7,12 @@ FactoryBot.define do
     email { 'anotherrrr@email.com.es' }
     password { 'password' }
   end
-end
 
-FactoryBot.define do
-  factory :user_2 do
-    first_name { 'Ansar' }
-    last_name { 'Ansar' }
-    email { 'ansarrr@gmail.com' }
-    password { 'password' }
+  factory :random_user, class: User do
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    email { Faker::Internet.safe_email }
+    password { Faker::Internet.password }
   end
 end
 
