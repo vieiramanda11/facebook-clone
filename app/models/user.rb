@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { in: 2..20 }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-       :omniauthable, omniauth_providers: %i[facebook]
+         :omniauthable, omniauth_providers: %i[facebook]
   has_many :posts
   has_many :comments
   has_many :likes
@@ -49,13 +49,12 @@ class User < ApplicationRecord
       user.profile_pic = auth.info.profile_pic
     end
   end
-  
+
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
       end
     end
   end
-
 end
