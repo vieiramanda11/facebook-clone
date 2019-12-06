@@ -2,7 +2,7 @@
 
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_friend_request
+  before_action :set_friend_request, except: [:friend_requests]
 
   def index
     @friends = current_user.friends
@@ -19,7 +19,7 @@ class FriendshipsController < ApplicationController
     user = User.find(params[:user_id])
     @connection = Friendship.where('user_id = ? and friend_id = ?', user.id, current_user.id).first
     @connection.update_column(:confirmed, true)
-    flash[:success] = 'You are the friends'
+    flash[:success] = 'You are friends'
     redirect_back(fallback_location: root_path)
   end
 
@@ -33,6 +33,10 @@ class FriendshipsController < ApplicationController
       @connection2.destroy
     end
     redirect_back(fallback_location: root_path)
+  end
+
+  def friend_requests
+    @requests = current_user.friend_requests
   end
 
   private
