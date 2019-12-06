@@ -5,7 +5,7 @@ Build Facebook using Ruby on Rails! Not all Facebook features are available
 
 ## Live Demo
 
-[Check a live version on Heroku](#)
+[Check a live version on Heroku](https://face-cloning.herokuapp.com)
 
 ## Authors:
 * [Ansar](https://github.com/ansaryergesh)
