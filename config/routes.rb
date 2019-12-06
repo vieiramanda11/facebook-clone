@@ -2,7 +2,8 @@
 
 Rails.application.routes.draw do
   devise_for :users, controller: {
-    confirmation: 'confirmation'
+    confirmation: 'confirmation',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   root 'pages#index'
 
