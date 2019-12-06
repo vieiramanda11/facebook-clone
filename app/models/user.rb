@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { in: 2..20 }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: %i[facebook]
+       :omniauthable, omniauth_providers: %i[facebook]
   has_many :posts
   has_many :comments
   has_many :likes
