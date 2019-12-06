@@ -4,9 +4,6 @@ require 'rails_helper'
 
 RSpec.feature 'UserLogins', type: :feature do
   let(:user1) { FactoryBot.create(:user) }
-  before do
-    user1.confirm
-  end
 
   scenario ' login invalid' do
     visit new_user_session_path

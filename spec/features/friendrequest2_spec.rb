@@ -6,11 +6,6 @@ RSpec.feature 'Friendrequest2s', type: :feature do
   let(:user1) { FactoryBot.create(:user) }
   let(:user2) { FactoryBot.create(:random_user) }
 
-  before do
-    user2.confirm
-    user1.confirm
-  end
-
   before :each do
     visit new_user_session_path
     fill_in 'Email', with: user1.email, match: :prefer_exact

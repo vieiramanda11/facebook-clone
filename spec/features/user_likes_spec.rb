@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'UserLogouts', type: :feature do
   let(:user1) { FactoryBot.create(:user) }
-  before do
-    user1.confirm
-  end
+
   before :each do
     visit new_user_session_path
     fill_in 'Email', with: user1.email, match: :prefer_exact

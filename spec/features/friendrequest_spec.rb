@@ -4,15 +4,8 @@ require 'rails_helper'
 
 RSpec.feature 'Friendrequests', type: :feature do
   let(:user1) { FactoryBot.create(:user) }
-  before do
-    user1.confirm
-  end
 
   let(:user2) { FactoryBot.create(:random_user) }
-
-  before do
-    user2.confirm
-  end
 
   before :each do
     visit new_user_session_path
