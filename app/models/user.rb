@@ -40,13 +40,25 @@ class User < ApplicationRecord
     Friendship.create(user_id: id, friend_id: friend.id)
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+    
+  
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
-      user.profile_pic = auth.info.profile_pic
+
+      full_name = auth.info.name.split
+      user.first_name = full_name.first
+      user.last_name = full_name.last
+      user.profile_pic = auth.info.image 
+      # user.first_name = auth.info.first_name
+      # user.last_name = auth.info.last_name
+      # user.profile_pic = auth.info.profile_pic
     end
   end
 
