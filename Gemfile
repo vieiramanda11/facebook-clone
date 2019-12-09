@@ -22,7 +22,7 @@ gem 'bootstrap-sass', '3.3.6'
 gem 'carrierwave', '~> 0.11.2'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'jbuilder', '~> 2.7'
-gem 'mini_magick', '4.5.1'
+gem 'mini_magick', '4.9.4'
 gem 'omniauth-facebook'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
