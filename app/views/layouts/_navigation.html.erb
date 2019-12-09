@@ -7,7 +7,7 @@
     <%if user_signed_in?%>
       <ul class="nav navbar-nav navbar-right header">
        <li><p class="margin-top"><%= link_to "All Users", users_path, class: "face-link" %></p></li>
-       <li><p class="margin-top"><%= link_to "Friend Requests", requests_path(user_id: current_user.id), class: "face-link" %> <%= current_user.friend_requests.count%></p></li>
+       <li id="friend-request"><p class="margin-top face-link"><%= link_to "Friend Requests", requests_path(user_id: current_user.id), class: "face-link" %> <%= current_user.friend_requests.count%></p></li>
          <li class="dropdown">
             <p class="face-link margin-top-2 dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
