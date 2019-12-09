@@ -115,6 +115,11 @@ button.social-signin.facebook {
   background: #32508E;
 }
 
+
+button.social-signin.facebook:hover {
+  background: rgb(103, 150, 245);
+}
+
 .login-form {
     padding: 55px 0;
     text-align: center;
