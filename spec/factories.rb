@@ -15,9 +15,3 @@ FactoryBot.define do
     password { Faker::Internet.password }
   end
 end
-
-FactoryBot.define do
-  factory :confirmed_user, parent: :user do
-    after(:create, &:confirm!)
-  end
-end

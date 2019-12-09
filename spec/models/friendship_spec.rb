@@ -4,18 +4,11 @@ require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
   let(:user1) { FactoryBot.create(:user) }
-  before do
-    user1.confirm
-  end
 
   let(:user2) do
     User.create(first_name: 'name', last_name: 'surename',
                 email: 'anyemail@gmail.com', password: 'password',
                 password_confirmation: 'password')
-  end
-
-  before do
-    user2.confirm
   end
 
   it 'should not be able to send a friend request to yourself' do
