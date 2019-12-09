@@ -1,0 +1,15 @@
+<% @requests.each do |request| %>
+  <% if current_user.friend_requests.include?(request)%>
+    <li><%= link_to "Check profile", user_path(request) %></li>
+    <%= request.first_name %>
+    <%= request.last_name %><br>
+    <%= request.profile_pic %>
+    <br>
+  
+      <%= button_to 'Accept', user_receive_path(request), class: 'btn btn-primary mr-2'%><br>
+      <%= button_to 'Reject', user_unfriend_path(request), method: :delete, class: 'btn btn-danger'%>
+  <%else%>
+    <h1> No requests! </h1>
+  <%end%>
+<% end %>
+

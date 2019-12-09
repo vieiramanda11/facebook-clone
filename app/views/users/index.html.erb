@@ -1,0 +1,36 @@
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+<% @users.each do |user| %>
+  <%if user.id != current_user.id%>
+    <li><%= link_to "Check profile", user_path(user) %></li>
+    <%= user.first_name %>
+    <%= user.last_name %><br>
+    <%= user.profile_pic %>
+    <br>
+    <%if current_user.friend?(user)%>
+     <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            You are friends
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= button_to 'Delete Friend', user_unfriend_path(user), method: :delete, class: 'btn-danger'%>
+          </div>
+        </div>
+ 
+    <%elsif current_user.pending_friends.include?(user)%>
+         <%= button_to  user_unfriend_path(user), method: :delete , class:"btn btn-danger btn-sm" do %>
+              <i class="fa fa-times"> Cancel Request</i>
+            <%end%>
+    <%elsif current_user.friend_requests.include?(user)%>
+          <%= button_to 'Accept', user_receive_path(user), class: 'btn btn-primary mr-2'%><br>
+          <%= button_to 'Reject', user_unfriend_path(user), method: :delete, class: 'btn btn-danger'%>
+    <%else%>
+      <%= button_to  user_friendships_path(user), class:"btn btn-default btn-sm" do %>
+        <i class="fas fa-user-plus"> Add friend</i>
+      <%end%>
+    <%end%>
+    <hr>
+  <%end%>
+<% end %>
+</div>
+</div>

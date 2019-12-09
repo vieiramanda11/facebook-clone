@@ -1,0 +1,119 @@
+<div class="row">
+    <aside class="col-md-12">
+        <section class="user-info">
+            <%= avatar_for(@user) %>
+            <h3 class="margin">
+              <%= @user.first_name %>
+              <%= @user.last_name%>
+            </h3>
+        </section>
+        <%if @user.id == current_user.id%>
+        <div class="anchor-time">
+        <%= link_to "Edit profile", edit_user_path(@user)%>
+        </div><br>
+        <%else%>
+          <br>
+          <%if current_user.friend?(@user)%>
+            <div class=" dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    You are friends
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <%= button_to 'Delete Friend', user_unfriend_path(@user), method: :delete, class: ' btn-danger'%>
+                  </div>
+            </div>
+  
+          <%elsif current_user.pending_friends.include?(@user)%>
+              <%= button_to  user_unfriend_path(@user), method: :delete , class:"   btn btn-danger" do %>
+                    <i class="fa fa-times"> Cancel Request</i>
+                  <%end%>
+          <%elsif current_user.friend_requests.include?(@user)%>
+                <%= button_to 'Accept', user_receive_path(@user), class: ' btn btn-primary mr-2'%>
+                <%= button_to 'Reject', user_unfriend_path(@user), method: :delete, class: ' btn btn-danger'%>
+          <%else%>
+            <%= button_to  user_friendships_path(@user), class:"   btn btn-default" do %>
+              <i class="fas fa-user-plus">Add friend</i>
+            <%end%>
+          <%end%>
+        <%end%>
+        <br>
+
+<% @user.posts.each do |p| %>
+  <div class="row">
+	  <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+               <section class="post-heading">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="media">
+                              <div class="media-body">
+                                <div class="anchor-username"> 
+                                  <h4 class="media-heading"><%= p.user.first_name %></h4>
+                                </div>
+                                <p class="anchor-time"><%= time_ago_in_words(p.created_at) %> ago</p>
+                              </div>
+                              <div class="anchor-time">
+                                <%if current_user?(p.user)%>
+                                  <%= link_to  "Edit", edit_post_path(p) %>
+                                  <%= link_to  "Delete", p, method: :delete, data: { confirm: "You sure?" } %>
+                                  <br> <br>
+                                <%end%>
+                              </div>
+                            </div>
+                        </div>
+                    </div>             
+               </section>
+               <section class="post-body">
+                   <p><%= p.content %></p>
+               </section>
+               <section class="post-footer">
+                   <div class="post-footer-option container">
+                        <ul class="list-unstyled">
+                            <% pre_like = p.likes.find { |like| like.user_id == current_user.id} %>
+                            <% if pre_like %>
+                            <li><%= button_to  post_like_path(p, pre_like), method: :delete, class:"btn btn-default" do %>
+                              <i class="glyphicon glyphicon-thumbs-down"> </i> Unlike</li>
+                            <%end%>
+                            <% else %>
+                            <li><%= button_to  post_likes_path(p), method: :post, class:"btn btn-default" do%>
+                              <i class="glyphicon glyphicon-thumbs-up"> </i> Like</li>
+                              <%end%>
+                            <% end %>
+                            <li class="counter"><%= p.likes.count %> <%= (p.likes.count) == 1 ? 'Like' : 'Likes'%></li> 
+                        </ul>
+                   </div>
+                   <hr>
+                   <% p.comments.each do |comment| %>
+                   <div class="post-footer-comment-wrapper">
+                       <div class="comment-form">
+                           
+                       </div>
+                       <div class="comment">
+                            <div class="media">
+                              <div class="media-body">
+                                <div class="anchor-username"><h4 class="media-heading"><%= comment.user.first_name%></h4><div> 
+                                <p class="anchor-time"><%= time_ago_in_words(comment.created_at) %> ago</p>
+                              </div>
+                              <div class="anchor-time">
+                              <%if current_user?(comment.user) %>
+                              <%= link_to "Edit", edit_comment_path(comment)%>
+                              <%= link_to  "Delete", comment, method: :delete, data: { confirm: "You sure?" } %>
+                            <%elsif current_user.id != comment.user && current_user.id == p.user_id %>
+                              <%= link_to  "Delete", comment, method: :delete, data: { confirm: "You sure?" } %>
+                            <%end%>
+                            </div> <br>
+                              <section class="post-body">
+                                <p><%= comment.comment %></p>
+                              </section>
+                            </div>
+                       </div>
+                       <hr>
+                   </div>
+                   <% end %>
+               </section>
+            </div>
+        </div>
+      </div>  
+    </div>
+<% end  %>

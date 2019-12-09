@@ -1,0 +1,57 @@
+/*-- Global Selectors --*/
+a{
+  color:#47649F;
+}
+
+body{
+  font-family:'helvetica';    
+}
+
+/*-- Bootstrap Override Style --*/
+
+
+/*-- Content Style --*/
+.center {
+  display: flex;
+  align-items: center;
+}
+
+.list-unstyled {
+  margin-left: -15px;
+}
+
+.post-footer-option li{
+  float:left;
+  margin-right:30px;
+  padding-bottom:15px;
+  font-weight:500;
+  font-size:1.3rem;
+}
+
+.post-footer-option li i{
+  color:#AFB4BD;
+}
+
+.counter {
+  margin-top: 8px;
+}
+
+.anchor-username h4{
+  font-weight:bold;    
+}
+
+.anchor-time{
+  color:#ADB2BB;
+  font-size:1.2rem;
+}
+
+.post-footer-comment-wrapper{
+  background-color:#F6F7F8;
+}
+
+.photo-profile {
+  width: 40px;
+  height: 40px;
+}
+
+
