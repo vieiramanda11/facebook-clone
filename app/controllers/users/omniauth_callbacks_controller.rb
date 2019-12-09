@@ -7,7 +7,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # @user = User.find_by(email: @fb_user.email)
     if (user = User.find_by(email: @user.email))
       @user = user
-    end 
+    end
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
