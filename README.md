@@ -9,9 +9,9 @@ Build Facebook using Ruby on Rails! Not all Facebook features are available
 
 ## Authors:
 * [Ansar- Github](https://github.com/ansaryergesh)
-* [Gmail: yergeshovansar@gmail.com]
+* Gmail: yergeshovansar@gmail.com
 * [Amanda](https://github.com/vieiramanda11)
-* [Gmail: amandavieirazevedo@gmail.com]
+* Gmail: amandavieirazevedo@gmail.com
 
 ## Features
 
