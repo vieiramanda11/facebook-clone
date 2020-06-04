@@ -1,7 +1,7 @@
 # Facebook Clone
 
 ## Description
-Build Facebook using Ruby on Rails! Not all Facebook features are available.
+Build Facebook using Ruby on Rails! Not all Facebook features are available. Used OmniAuth Authentication System using Facebook account.
 
 ## Live Demo
 
